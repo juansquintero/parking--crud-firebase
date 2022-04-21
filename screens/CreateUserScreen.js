@@ -11,9 +11,16 @@ import firebase from "../database/firebase";
 
 const AddUserScreen = (props) => {
   const initalState = {
-    name: "",
-    email: "",
-    phone: "",
+    placa: "",
+    tipo: "",
+    tipo_vehiculo: "",
+    modelo: "",
+    celular: "",
+    fecha_ingreso: "",
+    hora_ingreso: "",
+    observaciones: "",
+    mensulidad: "",
+    fecha_ultimo_pago: "",
   };
 
   const [state, setState] = useState(initalState);
@@ -23,15 +30,22 @@ const AddUserScreen = (props) => {
   };
 
   const saveNewUser = async () => {
-    if (state.name === "") {
-      alert("please provide a name");
+    if (state.placa === "" || state.tipo === "" || state.tipo_vehiculo === "" || state.modelo === "" || state.celular === "" || state.fecha_ingreso === "" || state.hora_ingreso === "" || state.observaciones === "" || state.mensulidad === "" || state.fecha_ultimo_pago === "") {
+      alert("Por favor llene los campos");
     } else {
 
       try {
         await firebase.db.collection("users").add({
-          name: state.name,
-          email: state.email,
-          phone: state.phone,
+          placa: state.placa,
+          tipo: state.tipo,
+          tipo_vehiculo: state.tipo_vehiculo,
+          modelo: state.modelo,
+          celular: state.celular,
+          fecha_ingreso: state.fecha_ingreso,
+          hora_ingreso: state.hora_ingreso,
+          observaciones: state.observaciones,
+          mensulidad: state.mensulidad,
+          fecha_ultimo_pago: state.fecha_ultimo_pago,
         });
 
         props.navigation.navigate("UsersList");
@@ -46,29 +60,81 @@ const AddUserScreen = (props) => {
       {/* Name Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Name"
-          onChangeText={(value) => handleChangeText(value, "name")}
-          value={state.name}
+          placeholder="Placa"
+          onChangeText={(value) => handleChangeText(value, "placa")}
+          value={state.placa}
         />
       </View>
 
-      {/* Email Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Email"
-          multiline={true}
-          numberOfLines={4}
-          onChangeText={(value) => handleChangeText(value, "email")}
-          value={state.email}
+          placeholder="Tipo"
+          onChangeText={(value) => handleChangeText(value, "tipo")}
+          value={state.tipo}
         />
       </View>
 
-      {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="phone"
-          onChangeText={(value) => handleChangeText(value, "phone")}
-          value={state.phone}
+          placeholder="Tipo de vehiculo"
+          onChangeText={(value) => handleChangeText(value, "tipo_vehiculo")}
+          value={state.tipo_vehiculo}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Modelo"
+          onChangeText={(value) => handleChangeText(value, "modelo")}
+          value={state.modelo}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Celular"
+          onChangeText={(value) => handleChangeText(value, "celular")}
+          value={state.celular}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Fecha de ingreso"
+          onChangeText={(value) => handleChangeText(value, "fecha_ingreso")}
+          value={state.fecha_ingreso}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Hora de ingreso"
+          onChangeText={(value) => handleChangeText(value, "hora_ingreso")}
+          value={state.hora_ingreso}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Observaciones"
+          onChangeText={(value) => handleChangeText(value, "observaciones")}
+          value={state.observaciones}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Mesualidad"
+          onChangeText={(value) => handleChangeText(value, "mesualidad")}
+          value={state.mensulidad}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Fecha de ultimo pago"
+          onChangeText={(value) => handleChangeText(value, "fecha_ultimo_pago")}
+          value={state.fecha_ultimo_pago}
         />
       </View>
 
